@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>How to use Kinect</title>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:500,700,900&display=swap" rel="stylesheet">
+	<style type="text/css">
+		html{font-family: 'Noto Sans KR', sans-serif;}
+		body,h1,p,div {margin: 0; padding: 0;}
+		p, h1,h2, img, iframe{position: absolute;}
+
+		.wrap{width: 1000px; margin: auto; 
+			background: none; 
+			height: 700px; position: relative;}
+		header,section,footer{overflow: hidden;}
+		header .wrap{
+			position: fixed;
+			background:url(kinect.gif);
+			width: 100%;
+			height:800px;
+			margin-bottom: 100px;}
+		header .wrap h1{
+			color: white; 
+			font-size: 150px;
+			left: 120px;
+			top: 100px;
+			font-weight: 700;
+			letter-spacing: -2px;
+			line-height: 1.15;
+			z-index: 5;}
+		
+		h2{font-weight: 700;
+			font-size: 40px;
+			letter-spacing: -1px;
+		}
+
+		p{font-size: 20px;
+			font-weight: 500;
+			line-height: 1.6;
+			color: #424242;
+			word-spacing: -1.8px;
+			letter-spacing: -1px;
+			width: 450px;
+			position: absolute;
+			word-break: keep-all;
+		}
+		footer{background: black;}
+		footer .wrap{height: 300px; height: 200px;}
+		footer p{text-align: center; color: white;
+			width: inherit;
+			padding-top: 50px;}
+
+		@keyframes op1{
+			from{opacity: 1;}
+			to{opacity: 0;}
+		}
+		@keyframes op2{
+			from{opacity: 0;}
+			to{opacity: 1;}
+		}
+		@keyframes co1{
+			from{color: black;}
+			to{color: white;}
+		}
+		@keyframes backco1{
+			from{color: black;
+				background-color: white;}
+			to{color: white;
+				background-color: black;}
+		}
+
+		.pan{background:black; width:100%; height:800px; opacity: 0.3;
+			position: absolute; z-index: 1;}
+
+		#d1{width: 600px; height: 100px; 
+			position: absolute;
+			background-color: white;
+			left: -400px;
+		}
+		#d1 h2{left: 200px;}
+		#d2{width: 700px; height: 100px; 
+			position: absolute;
+			background-color: white;
+			left: -400px;
+		}
+		#d2 h2{left: 200px;}
+		#d3{width: 750px; height: 100px; 
+			position: absolute;
+			background-color: white;
+			left: -400px;
+		}
+		#d3 h2{left: 200px;}
+		#d4{width: 750px; height: 100px; 
+			position: absolute;
+			background-color: white;
+			left: -400px;
+		}
+		#d4 h2{left: 200px;}
+		#d5{width: 700px; height: 100px; 
+			position: absolute;
+			background-color: white;
+			left: -400px;
+		}
+		#d5 h2{left: 200px;}
+		#d6{width: 700px; height: 100px; 
+			position: absolute;
+			background-color: white;
+			left: -400px;
+		}
+		#d6 h2{left: 200px;}
+
+		.w1{height: 900px;}
+		.w2{height: 800px;}
+		.w3{height: 6300px;}
+		.w4{height: 1000px;}
+		.i1{width: 1000px; left: 350px; top: 100px;}
+		.i2{width: 650px; left: 500px; top: 250px;}
+		.i3{width: 300px; left: 650px; top: 170px;}
+
+		.p0{left: 600px; color: white;}
+		.p1-2{left: 100px; top: 300px;}
+		.p1{left: 00px; top: 270px;}
+		.p4{left: 50px; top: 250px;}
+		.p2{left: 0px; top: 270px;}
+		.p3{left: 550px; top: 270px;}
+
+		.p5{font-size: 15px; left: 735px; top: 500px;}
+
+		.v1{top: 300px; left: -150px;}
+		.i4{width: 600px; top: 300px; left: 650px;}
+		#p6{top:950px; left: 300px; text-align: center;}
+		.v2{top: 1300px; left: -150px;}
+		.i5{width: 600px; top: 1300px; left: 650px;}
+		#p7{top:2000px; left: 300px; text-align: center;}
+		.v3{top: 2300px; left: -150px;}
+		.i6{width: 600px; top: 2300px; left: 650px;}
+		.i6-1{width: 600px; top: 3400px; left: 650px;}
+		#p8{top:3350px; left: 50px; text-align: center;}
+		.v4{top: 3900px; left: -150px;}
+		.i7{top: 3900px; width: 600px; left: 650px;}
+		#p9{top:4600px; left: 50px; text-align: center;}
+		.v5{top: 5100px; left: -150px;}
+		.i8{top: 5100px; width: 600px;  left: 650px;}
+		#p10{top:5800px; left: 50px; text-align: center;}
+		#p11{top:5900px; left: 50px; text-align: center;}
+
+		.i9{width: 400px; top: 200px; left: 50px; }
+		.i9:hover{opacity: 0.5}
+		.p12{top: 450px; left: 50px;}
+		.i10{width: 400px; top: 200px; left: 550px;}
+		.i10:hover{opacity: 0.5}
+		.p13{top: 450px; left: 550px;}
+
+		.i11{width: 400px; top: 600px; left: 50px;}
+		.i11:hover{opacity: 0.5}
+		.p14{top: 850px; left: 50px;}
+		.i12{width: 400px; top: 600px; left: 550px;}
+		.i12:hover{opacity: 0.5}
+		.p15{top: 860px; left: 550px;}
+
+		.i13{width: 400px; top: 1000px; left: 50px;}
+		.i13:hover{opacity: 0.5}
+		.p16{top: 1250px; left: 50px;}
+		.i14{width: 400px; top: 1000px; left: 550px;}
+		.i14:hover{opacity: 0.5}
+		.p17{top: 1250px; left: 550px;}
+
+
+		#cir1{width: 130px; left: 800px; top: 350px; opacity: 0;}
+		#cir2{width: 130px; left: 600px; top: 450px; opacity: 0;}
+		#cir3{width: 130px; left: 950px; top: 400px; opacity: 0;}
+		
+		#monitor{position: fixed; background-color: black;
+		 top: 0; right: 0; padding: 5px;
+		 width: 100px; height: 20px;
+		 color: yellow;
+		 opacity: 0;}
+		#head{opacity: 1;}
+
+		.t{transform: rotate(90deg); z-index: 99; 
+			left: 1400px; bottom: 310px;
+			color: black;
+			position: fixed; opacity: 0;}
+		#t1{opacity: 1; color: white;}
+
+
+	</style>
+</head>
+<body>
+	<header id="head">
+		<div class="wrap">
+			<div class="pan"></div>
+			<h1>Basic<br>for<br>Kinect v2</h1>
+		</div>
+	</header>
+	<section>
+		<div class="wrap w1"></div>
+	</section>
+	<section>
+		<div class="wrap">
+			<p class="p0">
+				본 페이지는 키넥트와 프로세싱을 활용하여 인터렉티브아트를 제작하고 싶은 사람들을 위한 기초 설명 페이지입니다. 기본 개념을 익혀, 이후 여러가지 예시를 통한 미디어를 완성할 수 있는 발판이 되고자합니다.<br>그럼 간단한 정보부터 함께 알아볼까요?
+			</p>
+		</div>
+	</section>
+	<p id="t1" class="t">Kinect & Processing</p>
+	<p id="t2" class="t">Depth의 이해</p>
+	<p id="t3" class="t">RawDepth</p>
+	<p id="t4" class="t">MinMax</p>
+	<p id="t5" class="t">Tracking</p>
+	<p id="t6" class="t">참고사이트</p>
+
+	<section>
+		<div class="wrap">
+			<div id="d1">
+				<h2>STEP 0. Kinect란?</h2>
+			</div>
+			<p class="p1">2012년에 미국 마이크로소프트에서 발매 된 Kinect v1은 Depth와 Skeleton등의 정보를 쉽게 얻을 수 있기 때문에 전세계의 개발자와 연구자로부터 주목 받았다. 2014년에 발매 된 Kinect v2는 하드웨어, 소프트웨어 모두 발전했다. Kinect v2의 작동 요구 사항 비교표는 다음과 같다. 본 페이지는 kinect v2를 기준으로 한다.
+			</p>
+			<img src="compare.png" class="i2">
+		</div>
+	</section>
+	<section>
+		<div class="wrap w1">
+			<div id="d2">
+				<h2>STEP 1. Kinect 연결하기</h2>
+			</div>
+			<img src="k2.jpg" class="i1">
+			<img src="circle2.png" id="cir1">
+			<img src="circle2.png" id="cir2">
+			<img src="circle2.png" id="cir3">
+			<p class="p1-2">
+				선이 많지만, 각 홈의 모양이 다르기 때문에 알맞게 연결해주면 어렵지 않게 준비할 수 있다. usb포트는 컴퓨터에 연결하고 콘센트를 연결해주면 설치는 완료된다. 이 때, 피사체와 적당한 거리가 있어야한다.
+			</p>
+		</div>
+	</section>
+	<section>
+		<div class="wrap">
+			<div id="d3">
+				<h2>STEP 2. Processing의 이해</h2>
+			</div>
+			<a href="https://processing.org">
+				<img src="processing.png" class="i3">
+			</a>
+			<p class="p4">Processing은 MIT 연구소 소속 Cassy Reas와 Ben Fry 가 개발한 미디어아트 및 교육용으로 만든 언어이다. 언어의 문법은 자바에서 가져왔지만 훨씬 단수화 되어있다. 간단하게 명령으로 시각적 표현이 가능한 것이 장점이며, 3D이나 영상제어 등도 어렵지 않게 구현 가능하다.
+			키넥트를 활용해 미디어아트를 표현할 때 Processing을 이용하며 프로세싱 홈페이지에서 무료로 다운가능하다. 
+			</p>
+			<p class="p5">▲홈페이지 바로가기</p>
+		</div>
+	</section>
+	<section>
+		<div class="wrap w2">
+			<div id="d4">
+				<h2>STEP 3. OS에 따른 기본 설정</h2>
+			</div>
+			<p class="p2">Windows<br><br>
+				Libraries - Open Kinect for Processing - Install
+				<br>을 눌러 processing에서 kinect를 연동할 수 있게 한다.
+				<br><br>시작에는 기본적으로	
+
+				<br><br>import KinectPV2.*;
+
+				<br>KinectV2 kinect;
+
+				<br><br>를 입력한다.
+			</p>
+			<p class="p3">Mac<br><br>
+				Libraries - Open Kinect for Processing - Install
+				<br>을 눌러 processing에서 kinect를 연동할 수 있게 한다.
+				<br><br>시작에는 기본적으로	
+
+				<br><br>import org.openkinect.processing.*;
+
+				<br>Kinect2 kinect2;
+
+				<br><br>를 입력한다.
+			</p>
+		</div>
+	</section>
+	<section>
+		<div class="wrap w3">
+			<div id="d5">
+				<h2>STEP 4. 주요개념 이해하기</h2>
+			</div>
+			<h3>Depth</h3>
+			<iframe width="760" height="515" src="https://www.youtube.com/embed/AONx576YGdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="v1"></iframe>
+			<img src="depth.png" class="i4">
+			<p id="p6">명암을 통해 깊이를 확인할 수 있다.<br>void는 한 번 실행되는 것,<br>draw는 반복해서 실행되는 것을 의미한다.<br>Skip을 조절해 사각형의 크기를 바꿔볼 수 있다.</p>
+
+			<iframe width="760" height="515" src="https://www.youtube.com/embed/QswEd9vlygc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="v2"></iframe>
+			<img src="P3D.png" class="i5">
+			<p id="p7">위와 같은 식이지만, Z값에 P3D를 활용함으로써 명암과 사각형의 크기 차이로 공간감을 연출할 수 있다.</p>
+
+			<iframe width="760" height="515" src="https://www.youtube.com/embed/U0DnjnGvPmg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="v3"></iframe>
+			<img src="Raw1.png" class="i6">
+			<img src="Raw2.png" class="i6-1">
+			<p id="p8">공간 모든 곳에 눈금을 메겨주는 식과 키넥트 앞 물체의 x, y, z를 
+			점으로 인식해주는 식을 결합한 이미지이다.
+			</p>
+
+			<iframe width="760" height="515" src="https://www.youtube.com/embed/_gnBp2maE_g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="v4"></iframe>
+			<img src="minmax.png" class="i7">
+			<p id="p9">
+			if~else 식으로 원하는 부분에만 색이 변할 수 있도록 설정, <br>minThresh와 maxThresh 값을 바꿔 범위를 지정하면 원하는 부분만 나타나게 할 수 있다.<br>
+			이때, 보이지 않는 범위를 숫자로 표현하려면 어렵기 때문에,<br>마우스를 움직이면서 원하는 범위를 확인해볼 수 있는 식이 // 이후의 두 식이다.</p>
+
+			<iframe width="760" height="515" src="https://www.youtube.com/embed/fEzksqlJK20" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="v5"> </iframe>
+			<img src="track1.png" class="i8">
+			<p id="p10">위를 통해 인식된 물체의 모든 점을 더하고, 총 픽셀로 나눠 평균점을 파악해 원을 따라다니게 하는 원리이다.<br> </p>
+			<p id="p11">이를 이용해 파티클 예제를 대입하면 평균값을 따라다니는 원에서 파티클이 나오게할 수 있다.</p>
+	</section>
+	<section>
+		<div class="wrap w4">
+			<div id="d6">
+				<h2>STEP 5. 참고 페이지</h2>
+			</div>
+			
+			<a href="https://processing.org/reference/">
+				<img src="processinghome.png" class="i9"> </a>
+			<p class="p12">Processing 예제와 설명</p>
+
+			<a href="http://codigogenerativo.com/code/kinectpv2-k4w2-processing-library/">
+				<img src="pv2.png" class="i10"></a>
+			<p class="p13">Thomas Sanchez Lengeling의 페이지</p>
+
+			<a href="https://shiffman.net/p5/kinect/">
+				<img src="shiffman.png" class="i11"></a>
+			<p class="p14">Daniel Shiffman의 페이지</p>
+		
+			<a href="https://www.youtube.com/user/shiffman">
+				<img src="youtube.png" class="i12"></a>
+			<p class="p15">Daniel Shiffman의 youtube채널</p>
+
+			<a href="https://totovr.github.io/SimpleOpenNI/">
+				<img src="simple.png" class="i13"></a>
+			<p class="p16">mac에서의 skelton인식을 위한 SimpleOpenNI</p>
+
+	</section>
+
+	<footer>
+		<div class="wrap">
+			<p>
+			Copyrightⓒ2019 moonkyunga All rights reserved.
+			</p>
+		</div>
+	</footer>
+	<div id="monitor"></div>
+	<script type="text/javascript">
+		window.onscroll = function(){
+		var t = document.documentElement.scrollTop + document.body.scrollTop;
+		monitor.innerHTML = t.toFixed(1);
+
+		if(t > 700){head.style.animation = "op1 1s forwards";}
+		else{head.style.animation = "";}
+		if(t > 700){t1.style.color = "black";}
+		else{t1.style.color = "";}
+		if(t > 800){d1.style.animation = "backco1 0.8s forwards";}
+		else{d1.style.animation = "";}
+		if(t > 1700){d2.style.animation = "backco1 0.8s forwards";}
+		else{d2.style.animation = "";}
+		if(t > 2100){cir1.style.animation = "op2 0.8s forwards";}
+		else{cir1.style.animation = "";}
+		if(t > 2150){cir2.style.animation = "op2 0.8s forwards";}
+		else{cir2.style.animation = "";}
+		if(t > 2200){cir3.style.animation = "op2 0.8s forwards";}
+		else{cir3.style.animation = "";}
+		if(t > 2600){d3.style.animation = "backco1 0.8s forwards";}
+		else{d3.style.animation = "";}
+		if(t > 3200){d4.style.animation = "backco1 0.8s forwards";}
+		else{d4.style.animation = "";}
+		if(t > 4000){d5.style.animation = "backco1 0.8s forwards";}
+		else{d5.style.animation = "";}
+		if(t > 10300){d6.style.animation = "backco1 0.8s forwards";}
+		else{d6.style.animation = "";}
+
+		if(t > 4500){t1.style.opacity = "0";}
+		else{t1.style.opacity = "";}
+		if(t > 4500){t2.style.opacity = "1";}
+		else{t2.style.opacity = "";}
+		if(t > 6400){t2.style.opacity = "0";}
+		else{t3.style.opacity = "";}
+		if(t > 6400){t3.style.opacity = "1";}
+		else{t3.style.opacity = "";}
+		if(t > 8200){t3.style.opacity = "0";}
+		else{t4.style.opacity = "";}
+		if(t > 8200){t4.style.opacity = "1";}
+		else{t4.style.opacity = "";}
+		if(t > 9300){t4.style.opacity = "0";}
+		else{t5.style.opacity = "";}
+		if(t > 9300){t5.style.opacity = "1";}
+		else{t5.style.opacity = "";}
+		if(t > 10600){t5.style.opacity = "0";}
+		else{t6.style.opacity = "";}
+		if(t > 10600){t6.style.opacity = "1";}
+		else{t6.style.opacity = "";}
+
+	}
+	</script>
+</body>
+</html>
